@@ -58,9 +58,9 @@ $machine = new Machine($states, $inputAlphabet, $initialState, $outputStates, $t
 | `$outputStates`  | `array`    | F ⊆ Q     | The set of accepting/final states as a parallel array to `$states`. |
 | `$transitionFn`  | `\Closure` | δ:Q×Σ→Q   | Function defining transitions: `fn(state, input): state`.           |
 
-### Basic light switch example
+### Mod 3 example
 
-**NB: See below lightswitch example and other basic examples in `/examples`**
+**NB: See below mod3 example and other basic examples in `/examples`**
 
 ```php
 use PrFsm\Machine;
