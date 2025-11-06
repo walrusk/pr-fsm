@@ -5,6 +5,7 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Fixtures\Mod3Machine;
+use Tests\Fixtures\DalmationMachine;
 use PrFsm\Exceptions\MachineInvalidInputException;
 use PrFsm\Exceptions\MachineTransitionException;
 use PrFsm\Exceptions\MachineInvalidResultException;
@@ -13,7 +14,7 @@ use PrFsm\Machine;
 
 final class MachineTest extends TestCase
 {
-    #[DataProvider('mod3cases')]
+    #[DataProvider('mod3Cases')]
     public function testMod3Cases(string $input, int $expected): void
     {
         $mod3machine = Mod3Machine::make();
@@ -21,7 +22,7 @@ final class MachineTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
-    public static function mod3cases(): array {
+    public static function mod3Cases(): array {
         return [
             // basic cases
             'basic case 1' => ['1101', 1],
@@ -86,5 +87,25 @@ final class MachineTest extends TestCase
         );
         $this->expectException(MachineInvalidOutputException::class);
         $mod3machine->process('1111');
+    }
+
+    #[DataProvider('dalmationCases')]
+    public function testDalmationCases(string $input, int $expected): void
+    {
+        $machine = DalmationMachine::make();
+        $result = $machine->process($input);
+        $this->assertSame($expected, $result);
+    }
+
+    public static function dalmationCases(): array {
+        return [
+            'case 1' => ['1101', 3], // found
+            'case 2' => ['1110', 2], // partially found
+            'case 3' => ['1111', 1], // 1 found
+            'case 4' => ['1000', 0], // 0 found
+            'case 5' => ['11101111', 3], // found
+            'case 6' => ['1000001000001', 1], // 1 found
+            'case 7' => ['100000100000100', 0], // 0 found
+        ];
     }
 }

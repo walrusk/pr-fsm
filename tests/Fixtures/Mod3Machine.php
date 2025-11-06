@@ -4,6 +4,9 @@ namespace Tests\Fixtures;
 
 use PrFsm\Machine;
 
+/**
+ * Machine to calculate the remainder when dividing a binary number by 3.
+ */
 class Mod3Machine
 {
     public static function make(): Machine
