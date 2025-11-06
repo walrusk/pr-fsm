@@ -34,6 +34,14 @@ class Machine
         $this->currentState = $this->initialState;
     }
 
+    /**
+     * Steps through a string or array of input.
+     * @param string|array $multiInput
+     * @return mixed
+     * @throws MachineInvalidInputException
+     * @throws MachineInvalidResultException
+     * @throws MachineTransitionException
+     */
     public function process(string|array $multiInput): mixed
     {
         $multiInputArr = is_string($multiInput) ? mb_str_split(trim($multiInput)) : $multiInput;
@@ -46,6 +54,7 @@ class Machine
     }
 
     /**
+     * Transitions the machine to the next state.
      * @param mixed $input
      * @return mixed
      * @throws MachineInvalidInputException
@@ -73,12 +82,18 @@ class Machine
         return $nextState;
     }
 
+    /**
+     * @return mixed
+     */
     public function output(): mixed
     {
         $currentStateIndex = array_search($this->currentState, $this->states, true);
         return $this->outputStates[$currentStateIndex];
     }
 
+    /**
+     * @return void
+     */
     public function reset(): void
     {
         $this->currentState = $this->initialState;
