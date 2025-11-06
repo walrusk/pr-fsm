@@ -5,7 +5,7 @@ namespace Tests\Fixtures;
 use PrFsm\Machine;
 
 /**
- * Machine to determine if 101 appears in a binary number.
+ * Machine determines if 101 appears in a binary number.
  */
 class DalmationMachine
 {

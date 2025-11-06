@@ -11,7 +11,7 @@ Run tests:
 ./tests/run.sh
 ```
 
-NB: Maintain test coverage!
+**Maintain test coverage!**
 
 ```
 Code Coverage Report Summary:
@@ -43,35 +43,58 @@ composer require walrusk/pr-fsm
 
 ## Usage
 
-NB: See basic examples in `/examples`
+### Instantiating a Machine
+
+```php
+use PrFsm\Machine;
+$machine = new Machine($states, $inputAlphabet, $initialState, $outputStates, $transitionFn);
+```
+
+| Parameter        | Type       | Component | Description                                               |
+|------------------|------------|-----------|-----------------------------------------------------------|
+| `$states`        | `array`    | Q         | Finite set of states.                                     |
+| `$inputAlphabet` | `array`    | Σ         | Finite input alphabet.                                    |
+| `$initialState`  | `mixed`    | q0 ∈ Q    | The initial state. Must be one of $states                 |
+| `$outputStates`  | `array`    | F ⊆ Q     | The set of accepting/final states.                        |
+| `$transitionFn`  | `\Closure` | δ:Q×Σ→Q   | Function defining transitions: `fn(state, input): state`. |
 
 ### Basic light switch example
+
+**NB: See below lightswitch example and other basic examples in `/examples`**
 
 ```php
 use PrFsm\Machine;
 
-final class LightSwitch
+final class Mod3State
 {
-    public const bool ON = true;
-    public const bool OFF = false;
+    public const int S0 = 0; // remainder 0
+    public const int S1 = 1; // remainder 1
+    public const int S2 = 2; // remainder 2
 }
 
-$lightswitch = new Machine(
-    [LightSwitch::OFF, LightSwitch::ON],    // Allowed states.
-    [null],                                 // Input alphabet.
-    LightSwitch::OFF,                       // Initial state.
-    ['OFF', 'ON'],                          // Output by state.
-    function (bool $state, mixed $input) {  // Transition function.
-        return !$state;
+$mod3machine = new Machine(
+    [Mod3State::S0, Mod3State::S1, Mod3State::S2],
+    ["0", "1"],
+    Mod3State::S0,
+    [0, 1, 2],
+    function (int $state, string $input) {
+        $bit = $input === '1' ? 1 : 0;
+
+        $next = [
+            /* S0 */ [Mod3State::S0, Mod3State::S1],
+            /* S1 */ [Mod3State::S2, Mod3State::S0],
+            /* S2 */ [Mod3State::S1, Mod3State::S2],
+        ];
+
+        if (!isset($next[$state])) {
+            throw new \Exception('Invalid state: ' . $state);
+        }
+
+        return $next[$state][$bit];
     },
 );
 
-// flick the switch
-$lightswitch->step(null);
-$output = $lightswitch->output();
-
-// flick the switch 3 times
-$output = $lightswitch->process([null, null, null]);
+$output = $mod3machine->process('1101');
 ```
 
 ## Dev setup
