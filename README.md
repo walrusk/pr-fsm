@@ -2,6 +2,8 @@
 
 A library for a finite state machine.
 
+![CI](https://github.com/walrusk/pr-fsm/actions/workflows/ci.yml/badge.svg?branch=main)
+
 ## Tests
 
 Run tests:
