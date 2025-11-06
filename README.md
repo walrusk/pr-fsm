@@ -2,7 +2,7 @@
 
 A library for a finite state machine.
 
-![CI](https://github.com/walrusk/pr-fsm/actions/workflows/ci.yml/badge.svg?branch=main)
+![tests](https://github.com/walrusk/pr-fsm/actions/workflows/tests.yml/badge.svg?branch=main)
 
 ## Tests
 
