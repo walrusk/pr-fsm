@@ -40,17 +40,10 @@ class ValidateMachine
         if (!in_array($initialState, $states, true)) {
             throw new MachineInvalidInitialStateException('Provided initial state is invalid, ensure initial state is contained in states.');
         }
-        if (count($outputStates) < 2 || !self::isSubset($outputStates, $states)) {
-            throw new MachineInvalidOutputStatesException('Provided output states are invalid, provide at least two that are a subset of the provided states.');
+        if (count($outputStates) !== count($states)) {
+            throw new MachineInvalidOutputStatesException('Provided output states are invalid, ensure states and output states have the same length.');
         }
         self::validateTransitionFunction($transitionFn);
-    }
-
-    private static function isSubset(array $subset, array $set): bool {
-        foreach ($subset as $value) {
-            if (!in_array($value, $set, true)) return false;
-        }
-        return true;
     }
 
     private static function validateTransitionFunction(\Closure $transitionFn): void

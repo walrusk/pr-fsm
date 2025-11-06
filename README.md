@@ -51,7 +51,7 @@ $lightswitch = new Machine(
     [LightSwitch::OFF, LightSwitch::ON],    // Allowed states.
     [null],                                 // Input alphabet.
     LightSwitch::OFF,                       // Initial state.
-    [LightSwitch::OFF, LightSwitch::ON],    // Allowed output states.
+    ['OFF', 'ON'],                          // Output by state.
     function (bool $state, mixed $input) {  // Transition function.
         return !$state;
     },

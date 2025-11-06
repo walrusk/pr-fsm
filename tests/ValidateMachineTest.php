@@ -16,10 +16,10 @@ final class ValidateMachineTest extends TestCase
     {
         $this->expectException(MachineInvalidStatesException::class);
         new Machine(
-            [0], // Only one allowed state, two required.
+            [0], // Only one state, at least two required.
             ["0", "1"],
             0,
-            [0, 1, 2],
+            [0],
             function (int $state, string $input) {
                 return $state;
             },
@@ -54,28 +54,14 @@ final class ValidateMachineTest extends TestCase
         );
     }
 
-    public function testValidatesMinimumTwoOutputStates()
+    public function testValidatesNumOutputStates()
     {
         $this->expectException(MachineInvalidOutputStatesException::class);
         new Machine(
             [0, 1, 2],
             ["0", "1"],
             0,
-            [0], // Only one output state, two required.
-            function (int $state, string $input) {
-                return $state;
-            },
-        );
-    }
-
-    public function testValidatesOutputStatesSubsetOfStates()
-    {
-        $this->expectException(MachineInvalidOutputStatesException::class);
-        new Machine(
-            [0, 1, 2],
-            ["0", "1"],
-            0,
-            [0, 3], // Includes value not in states.
+            [0], // Only one output state, require the same number as states.
             function (int $state, string $input) {
                 return $state;
             },

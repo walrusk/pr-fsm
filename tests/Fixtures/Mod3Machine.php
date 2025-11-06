@@ -15,7 +15,7 @@ class Mod3Machine
             [Mod3State::S0, Mod3State::S1, Mod3State::S2],
             ["0", "1"],
             Mod3State::S0,
-            [Mod3State::S0, Mod3State::S1, Mod3State::S2],
+            [0, 1, 2],
             function (int $state, string $input) {
                 $bit = $input === '1' ? 1 : 0;
 

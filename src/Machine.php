@@ -76,10 +76,8 @@ class Machine
 
     public function output(): mixed
     {
-        if (!in_array($this->currentState, $this->outputStates, true)) {
-            throw new MachineInvalidOutputException();
-        }
-        return $this->currentState;
+        $currentStateIndex = array_search($this->currentState, $this->states, true);
+        return $this->outputStates[$currentStateIndex];
     }
 
     public function reset(): void

@@ -14,7 +14,7 @@ $lightswitch = new Machine(
     [LightSwitch::OFF, LightSwitch::ON],    // Allowed states.
     [null],                                 // Input alphabet.
     LightSwitch::OFF,             // Initial state.
-    [LightSwitch::OFF, LightSwitch::ON],    // Allowed output states.
+    ['OFF', 'ON'],                          // Output by state.
     function (bool $state, mixed $input) {  // Transition function.
         return !$state;
     },
@@ -27,4 +27,4 @@ $output = $lightswitch->output();
 // flick the switch 3 times
 $output = $lightswitch->process([null, null, null]);
 
-echo 'Lightswitch is: ' . ($output ? 'ON' : 'OFF');
+echo "Lightswitch is: $output";

@@ -76,21 +76,21 @@ final class MachineTest extends TestCase
         $this->assertSame($output1, $output3);
     }
 
-    public function testHandlesInvalidOutput()
+    public function testMachineProducesOutput()
     {
         $mod3machine = new Machine(
             [0, 1, 2],  // 0 allowed
             ["0", "1"],
             0,
-            [1, 2],     // 0 not allowed in output
+            ['test', 'test', 'test'],     // 0 not allowed in output
             function (int $state, string $input) { return 0; }
         );
-        $this->expectException(MachineInvalidOutputException::class);
-        $mod3machine->process('1111');
+        $output = $mod3machine->process('1111');
+        $this->assertSame('test', $output);
     }
 
     #[DataProvider('dalmationCases')]
-    public function testDalmationCases(string $input, int $expected): void
+    public function testDalmationCases(string $input, bool $expected): void
     {
         $machine = DalmationMachine::make();
         $result = $machine->process($input);
@@ -100,13 +100,14 @@ final class MachineTest extends TestCase
     public static function dalmationCases(): array {
         // The dalmation machine determines if 101 appears in the binary number.
         return [
-            'case 1' => ['1101', 3], // found
-            'case 2' => ['1110', 2], // partially found
-            'case 3' => ['1111', 1], // 1 found
-            'case 4' => ['1000', 0], // 0 found
-            'case 5' => ['11101111', 3], // found
-            'case 6' => ['1000001000001', 1], // 1 found
-            'case 7' => ['100000100000100', 0], // 0 found
+            'case 1' => ['1101', true],
+            'case 2' => ['1110', false],
+            'case 3' => ['1111', false],
+            'case 4' => ['1000', false],
+            'case 5' => ['11101111', true],
+            'case 6' => ['1000001000001', false],
+            'case 7' => ['100000100000100', false],
+            'case 8' => ['1010101', true],
         ];
     }
 }

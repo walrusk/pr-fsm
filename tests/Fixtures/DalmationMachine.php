@@ -15,7 +15,7 @@ class DalmationMachine
             [DalmationState::S0, DalmationState::S1, DalmationState::S2, DalmationState::S3],
             ["0", "1"],
             DalmationState::S0,
-            [DalmationState::S0, DalmationState::S1, DalmationState::S2, DalmationState::S3],
+            [false, false, false, true],
             function (int $state, string $input) {
                 if ($state === DalmationState::S3) { // Found 101 already.
                     return $state;
