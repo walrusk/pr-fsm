@@ -9,7 +9,6 @@ use Tests\Fixtures\DalmationMachine;
 use PrFsm\Exceptions\MachineInvalidInputException;
 use PrFsm\Exceptions\MachineTransitionException;
 use PrFsm\Exceptions\MachineInvalidResultException;
-use PrFsm\Exceptions\MachineInvalidOutputException;
 use PrFsm\Machine;
 
 final class MachineTest extends TestCase

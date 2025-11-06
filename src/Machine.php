@@ -4,7 +4,6 @@ namespace PrFsm;
 
 use PrFsm\Exceptions\MachineTransitionException;
 use PrFsm\Exceptions\MachineInvalidInputException;
-use PrFsm\Exceptions\MachineInvalidOutputException;
 use PrFsm\Exceptions\MachineInvalidResultException;
 
 class Machine
