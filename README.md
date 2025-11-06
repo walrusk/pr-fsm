@@ -50,13 +50,13 @@ use PrFsm\Machine;
 $machine = new Machine($states, $inputAlphabet, $initialState, $outputStates, $transitionFn);
 ```
 
-| Parameter        | Type       | Component | Description                                               |
-|------------------|------------|-----------|-----------------------------------------------------------|
-| `$states`        | `array`    | Q         | Finite set of states.                                     |
-| `$inputAlphabet` | `array`    | Σ         | Finite input alphabet.                                    |
-| `$initialState`  | `mixed`    | q0 ∈ Q    | The initial state. Must be one of $states                 |
-| `$outputStates`  | `array`    | F ⊆ Q     | The set of accepting/final states.                        |
-| `$transitionFn`  | `\Closure` | δ:Q×Σ→Q   | Function defining transitions: `fn(state, input): state`. |
+| Parameter        | Type       | Component | Description                                                         |
+|------------------|------------|-----------|---------------------------------------------------------------------|
+| `$states`        | `array`    | Q         | Finite set of states.                                               |
+| `$inputAlphabet` | `array`    | Σ         | Finite input alphabet.                                              |
+| `$initialState`  | `mixed`    | q0 ∈ Q    | The initial state. Must be one of $states                           |
+| `$outputStates`  | `array`    | F ⊆ Q     | The set of accepting/final states as a parallel array to `$states`. |
+| `$transitionFn`  | `\Closure` | δ:Q×Σ→Q   | Function defining transitions: `fn(state, input): state`.           |
 
 ### Basic light switch example
 
