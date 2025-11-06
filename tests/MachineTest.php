@@ -98,6 +98,7 @@ final class MachineTest extends TestCase
     }
 
     public static function dalmationCases(): array {
+        // The dalmation machine determines if 101 appears in the binary number.
         return [
             'case 1' => ['1101', 3], // found
             'case 2' => ['1110', 2], // partially found

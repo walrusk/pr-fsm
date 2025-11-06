@@ -13,7 +13,7 @@ class ValidateMachine
     /**
      * @param array $states
      * @param array $inputAlphabet
-     * @param string $initialState
+     * @param mixed $initialState
      * @param array $outputStates
      * @param \Closure $transitionFn
      * @return void

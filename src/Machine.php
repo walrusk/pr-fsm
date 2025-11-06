@@ -11,6 +11,18 @@ class Machine
 {
     private mixed $currentState;
 
+    /**
+     * @param array $states
+     * @param array $inputAlphabet
+     * @param mixed $initialState
+     * @param array $outputStates
+     * @param \Closure $transitionFn
+     * @throws Exceptions\MachineInvalidAlphabetException
+     * @throws Exceptions\MachineInvalidInitialStateException
+     * @throws Exceptions\MachineInvalidOutputStatesException
+     * @throws Exceptions\MachineInvalidStatesException
+     * @throws Exceptions\MachineInvalidTransitionException
+     */
     public function __construct(
         private readonly array $states,
         private readonly array $inputAlphabet,
