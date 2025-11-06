@@ -2,6 +2,15 @@
 
 A library for a finite state machine.
 
+## Tests
+
+Run tests:
+
+```sh
+# Runs in docker container with code coverage output.
+./tests/run.sh
+```
+
 ## Installation
 
 ### 1. Add repo to composer.json:
@@ -25,7 +34,7 @@ composer require walrusk/pr-fsm
 
 ## Usage
 
-NB: See examples in `/examples`
+NB: See basic examples in `/examples`
 
 ### Basic light switch example
 
@@ -56,8 +65,6 @@ $output = $lightswitch->output();
 $output = $lightswitch->process([null, null, null]);
 ```
 
-## Tests
+## Dev setup
 
 Install deps: `composer install`
-
-Run tests: `./tests/run.sh`
