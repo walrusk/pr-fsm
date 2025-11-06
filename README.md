@@ -11,6 +11,15 @@ Run tests:
 ./tests/run.sh
 ```
 
+NB: Maintain test coverage!
+
+```
+Code Coverage Report Summary:
+  Classes: 100.00% (10/10)
+  Methods: 100.00% (15/15)
+  Lines:   100.00% (38/38)
+```
+
 ## Installation
 
 ### 1. Add repo to composer.json:
