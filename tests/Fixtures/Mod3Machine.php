@@ -30,6 +30,17 @@ class Mod3Machine
             },
         );
     }
+
+    public static function makeWithTransitionFn(\Closure $transitionFn): Machine
+    {
+        return new Machine(
+            [Mod3State::S0, Mod3State::S1, Mod3State::S2],
+            ["0", "1"],
+            Mod3State::S0,
+            [Mod3State::S0, Mod3State::S1, Mod3State::S2],
+            $transitionFn,
+        );
+    }
 }
 
 final class Mod3State

@@ -55,12 +55,7 @@ class ValidateMachine
 
     private static function validateTransitionFunction(\Closure $transitionFn): void
     {
-        try {
-            $r = new \ReflectionFunction($transitionFn);
-        } catch (\ReflectionException $e) {
-            throw new MachineInvalidTransitionException('Invalid transition function provided.', 0, $e);
-        }
-
+        $r = new \ReflectionFunction($transitionFn);
         if ($r->getNumberOfParameters() !== 2) {
             throw new MachineInvalidTransitionException('Invalid transition function provided, function should accept two parameters: state and input');
         }

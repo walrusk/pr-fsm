@@ -8,4 +8,4 @@ docker run --rm \
   -w /app \
   -e XDEBUG_MODE=coverage \
   php-test \
-  sh -c "composer install --no-interaction && php vendor/bin/phpunit"
+  sh -c "composer install --no-interaction && composer dump-autoload && php vendor/bin/phpunit"

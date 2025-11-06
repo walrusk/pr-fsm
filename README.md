@@ -60,11 +60,4 @@ $output = $lightswitch->process([null, null, null]);
 
 Install deps: `composer install`
 
-Run tests: `./vendor/bin/phpunit tests`
-
-Run tests with coverage:
-```
-brew install xdebug
-./vendor/bin/phpunit tests --coverage-html coverage/
-```
-
+Run tests: `./tests/run.sh`

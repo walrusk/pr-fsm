@@ -20,6 +20,7 @@
     <coverage includeUncoveredFiles="true">
         <report>
             <text outputFile="php://stdout" showUncoveredFiles="true" showOnlySummary="true" />
+            <html outputDirectory="tests/coverage" />
         </report>
     </coverage>
 </phpunit>
